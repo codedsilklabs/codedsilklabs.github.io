@@ -1,0 +1,142 @@
+<header class="bg-gray-900 text-white shadow-lg py-4 px-6 rounded-b-lg">
+    <nav class="container mx-auto flex justify-between items-center">
+        <!-- Site Title/Logo -->
+        <a href="/" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-green-400 font-orbitron rounded-md p-2">
+            Coded Silk Labs
+        </a>
+
+        <!-- Mobile Menu Button (Hamburger) -->
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white p-2 rounded-md">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-6">
+            {% for item in site.navigation %}
+                {% if item.sub_menu %}
+                    <div class="relative group">
+                        <a href="{{ item.url }}" id="framework-dropdown-button" class="text-lg hover:text-mint transition duration-200 ease-in-out px-3 py-2 rounded-md flex items-center">
+                            {{ item.title }}
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <div id="framework-dropdown" class="hidden absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-10 group-hover:block">
+                            {% for sub_item in item.sub_menu %}
+                                <a href="{{ sub_item.url }}" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 hover:text-mint rounded-md">
+                                    {{ sub_item.title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{{ item.url }}" class="text-lg hover:text-mint transition duration-200 ease-in-out px-3 py-2 rounded-md">
+                        {{ item.title }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <!-- Sun icon for light mode, Moon icon for dark mode -->
+                <svg class="h-6 w-6 hidden light-mode-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M2 12h1m15.325-4.25l-.707-.707M6.382 6.382l-.707-.707m12.728 12.728l-.707-.707M6.382 17.618l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <svg class="h-6 w-6 dark-mode-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-2 rounded-b-lg mt-2">
+        {% for item in site.navigation %}
+            {% if item.sub_menu %}
+                <div class="relative">
+                    <a href="{{ item.url }}" class="block px-4 py-2 text-lg text-white hover:bg-gray-700 hover:text-mint transition duration-200 ease-in-out flex justify-between items-center" id="mobile-framework-dropdown-button">
+                        {{ item.title }}
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                    <div id="mobile-framework-dropdown" class="hidden pl-8 py-1 bg-gray-700">
+                        {% for sub_item in item.sub_menu %}
+                            <a href="{{ sub_item.url }}" class="block px-4 py-2 text-sm text-white hover:bg-gray-600 hover:text-mint">
+                                {{ sub_item.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ item.url }}" class="block px-4 py-2 text-lg text-white hover:bg-gray-700 hover:text-mint transition duration-200 ease-in-out">
+                    {{ item.title }}
+                </a>
+            {% endif %}
+        {% endfor %}
+        <!-- Mobile Theme Toggle Button -->
+        <div class="px-4 py-2">
+            <button id="theme-toggle-mobile" class="w-full text-left p-2 rounded-md bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-700 focus:ring-white flex items-center justify-center">
+                <span class="mr-2">Toggle Theme</span>
+                <svg class="h-6 w-6 hidden light-mode-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M2 12h1m15.325-4.25l-.707-.707M6.382 6.382l-.707-.707m12.728 12.728l-.707-.707M6.382 17.618l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <svg class="h-6 w-6 dark-mode-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileFrameworkDropdownButton = document.getElementById('mobile-framework-dropdown-button');
+        const mobileFrameworkDropdown = document.getElementById('mobile-framework-dropdown');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const themeToggleDesktop = document.getElementById('theme-toggle');
+
+        // Toggle mobile framework dropdown
+        if (mobileFrameworkDropdownButton) {
+            mobileFrameworkDropdownButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                mobileFrameworkDropdown.classList.toggle('hidden');
+            });
+        }
+
+        // Function to update theme icons
+        const updateThemeIcons = () => {
+            const isLightMode = document.body.classList.contains('light-mode');
+            document.querySelectorAll('.light-mode-icon').forEach(icon => {
+                icon.classList.toggle('hidden', !isLightMode);
+            });
+            document.querySelectorAll('.dark-mode-icon').forEach(icon => {
+                icon.classList.toggle('hidden', isLightMode);
+            });
+        };
+
+        // Initial icon setup
+        updateThemeIcons();
+
+        // Theme toggle for desktop
+        if (themeToggleDesktop) {
+            themeToggleDesktop.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+                updateThemeIcons();
+            });
+        }
+
+        // Theme toggle for mobile
+        if (themeToggleMobile) {
+            themeToggleMobile.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+                updateThemeIcons();
+            });
+        }
+    });
+</script>

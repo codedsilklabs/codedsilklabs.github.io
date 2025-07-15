@@ -1,0 +1,9 @@
+---
+layout: default
+---
+
+<article class="prose prose-invert max-w-none mx-auto py-8">
+    <h1 class="text-4xl font-bold mb-4 text-mint">{{ page.title }}</h1>
+    <p class="text-sm text-gray-400 mb-6">Published on {{ page.date | date: "%B %d, %Y" }}</p>
+    {{ content }}
+</article>

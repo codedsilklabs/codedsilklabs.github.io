@@ -1,16 +1,16 @@
 # Site settings
 title: Coded Silk Labs
-email: codedsilklabs@graphic-designer.com
+email: your-email@example.com # Update with your actual email
 description: >- # this means to ignore newlines until "baseurl:"
   The official online platform for the Universal Equation Framework, showcasing
   extensive research, documents, and a blog, with advanced dynamic features and a focus on user-friendly customization.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # Keep this empty for root domain hosting
+url: "https://codedsilklabs.github.io" # Your live GitHub Pages URL
 permalink: /:categories/:title/ # Example permalink structure
 
 # Build settings
 markdown: kramdown
-#theme: minima # You might remove this if building from scratch, but useful for initial setup
+# theme: minima # DELETE or COMMENT OUT this line as we're using a custom theme
 plugins:
   - jekyll-feed
   - jekyll-sitemap

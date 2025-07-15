@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+
+    <!-- Google Fonts: Inter for body, Orbitron for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Define CSS Variables for Color Palette */
+        :root {
+            --color-bg: {{ site.colors.background }};
+            --color-mint: {{ site.colors.mint }};
+            --color-turquoise: {{ site.colors.turquoise }};
+            --color-text-light: {{ site.colors.text_light }};
+            --color-text-dark: {{ site.colors.text_dark }};
+        }
+
+        /* Dark Mode by default */
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-light);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--color-mint); /* Headings in mint */
+        }
+
+        a {
+            color: var(--color-turquoise); /* Links in turquoise */
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--color-mint);
+        }
+
+        /* Light Mode styles */
+        body.light-mode {
+            background-color: #f0f0f0; /* Lighter background */
+            color: var(--color-text-dark); /* Darker text */
+        }
+
+        body.light-mode h1,
+        body.light-mode h2,
+        body.light-mode h3,
+        body.light-mode h4,
+        body.light-mode h5,
+        body.light-mode h6 {
+            color: #0056b3; /* Darker blue for headings in light mode */
+        }
+
+        body.light-mode a {
+            color: #007bff; /* Standard blue for links in light mode */
+        }
+
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-turquoise);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-mint);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    {% include header.html %}
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    {% include footer.html %}
+
+    <script>
+        // JavaScript for mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const frameworkDropdownButton = document.getElementById('framework-dropdown-button');
+            const frameworkDropdown = document.getElementById('framework-dropdown');
+            const themeToggle = document.getElementById('theme-toggle');
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            if (frameworkDropdownButton) {
+                frameworkDropdownButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    frameworkDropdown.classList.toggle('hidden');
+                });
+            }
+
+            // Close dropdowns if clicked outside
+            document.addEventListener('click', (event) => {
+                if (frameworkDropdown && !frameworkDropdownButton.contains(event.target) && !frameworkDropdown.contains(event.target)) {
+                    frameworkDropdown.classList.add('hidden');
+                }
+            });
+
+            // Theme Toggle Logic
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    // Store preference in localStorage
+                    if (document.body.classList.contains('light-mode')) {
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            }
+
+            // Apply saved theme on load
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        });
+    </script>
+</body>
+</html>
