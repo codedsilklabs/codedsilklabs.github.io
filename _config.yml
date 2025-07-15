@@ -1,0 +1,64 @@
+# Site settings
+title: Coded Silk Labs
+email: codedsilklabs@graphic-designer.com
+description: >- # this means to ignore newlines until "baseurl:"
+  The official online platform for the Universal Equation Framework, showcasing
+  extensive research, documents, and a blog, with advanced dynamic features and a focus on user-friendly customization.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://yourdomain.com" # the base hostname & protocol for your site, e.g. http://example.com
+permalink: /:categories/:title/ # Example permalink structure
+
+# Build settings
+markdown: kramdown
+#theme: minima # You might remove this if building from scratch, but useful for initial setup
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag # Recommended for SEO
+
+# Custom variables (for easy access in layouts)
+colors:
+  background: "#1a1a2e" # Deep, rich dark background
+  mint: "#66ffcc"       # Pale neon mint green
+  turquoise: "#00e6e6"   # Turquoise accent
+  text_light: "#e0e0e0"  # Light grey for main text
+  text_dark: "#333333"   # Dark grey for light mode text
+
+# Navigation data (used in _includes/header.html)
+navigation:
+  - title: Home
+    url: /
+  - title: The Framework
+    url: /framework/
+    sub_menu:
+      - title: Hypothesis
+        url: /framework/hypothesis/
+      - title: Variables
+        url: /framework/variables/
+      - title: Duality
+        url: /framework/duality/
+      - title: Fields of Study
+        url: /framework/fields-of-study/
+      - title: Equations
+        url: /framework/equations/
+      - title: Cosmic Purpose
+        url: /framework/cosmic-purpose/
+      - title: Cosmic Paradox
+        url: /framework/cosmic-paradox/
+  - title: Research & Documents
+    url: /documents/
+  - title: Blog
+    url: /blog/
+  - title: About Us
+    url: /about/
+  - title: Contact
+    url: /contact/
+
+# Collections (for structured content like documents and fields of study)
+collections:
+  documents:
+    output: true
+    permalink: /documents/:path/
+  fields_of_study:
+    output: true
+    permalink: /fields-of-study/:path/
