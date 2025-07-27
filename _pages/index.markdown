@@ -3,4 +3,4 @@ layout: home
 title: Home
 permalink: /
 ---
-<!-- Homepage content is handled by the home.html layout -->
+<!-- The home.html layout handles the content. -->
