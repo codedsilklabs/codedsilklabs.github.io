@@ -8,6 +8,12 @@ baseurl: "" # Keep this empty for root domain hosting
 url: "https://codedsilklabs.github.io" # Your live GitHub Pages URL
 permalink: /:categories/:title/ # Example permalink structure
 
+# --- ADD COLLECTIONS BLOCK HERE ---
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+    
 # Build settings
 markdown: kramdown
 # theme: minima # DELETE or COMMENT OUT this line as we're using a custom theme
