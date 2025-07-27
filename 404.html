@@ -17,9 +17,18 @@ layout: page
   }
 </style>
 
+<script>
+  // GitHub Pages client-side routing fix
+  (function() {
+    var redirect = '/#' + location.pathname + location.search + location.hash;
+    if (location.pathname !== '/404.html') {
+      location.replace(redirect);
+    }
+  })();
+</script>
+
 <div class="container">
   <h1>404</h1>
-
   <p><strong>Page not found :(</strong></p>
   <p>The requested page could not be found.</p>
 </div>
