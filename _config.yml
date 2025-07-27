@@ -62,3 +62,10 @@ collections:
   fields_of_study:
     output: true
     permalink: /fields-of-study/:path/
+    # Tell Jekyll to process files inside _pages/
+defaults:
+  - scope:
+      path: "_pages"
+    values:
+      layout: page
+      permalink: "/:basename/"
